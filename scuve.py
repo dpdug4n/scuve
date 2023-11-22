@@ -21,7 +21,6 @@ Spreadsheet.Column.Unique.Val.Extractor
         print(BANNER)
         self.args = scuve.parse_args()
 
-
     @staticmethod
     def parse_args():
         description  = """
@@ -73,17 +72,14 @@ Supports extracting values from cells with string formatted lists.
         data = self.validate_and_load()
         extracted_vals = list(chain.from_iterable([list(data[name].unique()) for name in self.args.column_names]))
         extracted_vals = [str(val).strip('"').strip("'").strip() for val in extracted_vals]
-        tmp_list = []
         for val in extracted_vals:
             if val.startswith('['):
                 extracted_vals.remove(val)
-                for extracted_val in val.split(","):
-                    tmp_list.append(extracted_val.strip('[').strip(']'))            
+                tmp_list = [extracted_val.strip('[').strip(']') for extracted_val in val.split(",")]      
         for val in tmp_list:
             extracted_vals.append(val)
         extracted_vals = list(set([val.strip("'").strip('"').strip() for val in extracted_vals]))           
         print(f"Unique Values Extracted:\n{', '.join(extracted_vals)}")
-
 
 if __name__ == '__main__':
     scuve = scuve()
