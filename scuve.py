@@ -29,7 +29,8 @@ Supports extracting values from cells with string formatted lists.
 """
         parser = argparse.ArgumentParser(description=description)
         parser.add_argument('-f','--file_path', help="File path of spreadsheet. Supports CSV, TSV & XLSX", type=str, required=True)
-        parser.add_argument('-c','--column_names', help='String or CSV string of column names', type=str)
+        parser.add_argument('-c','--column_names', help="""String or CSV string of column names.
+            If not provided, will be prompted with available names.""", type=str)
         args = parser.parse_args()
         return args
     
