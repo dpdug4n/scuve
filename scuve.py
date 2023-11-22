@@ -86,5 +86,5 @@ Supports extracting values from cells with string formatted lists.
 
 
 if __name__ == '__main__':
-    scuve_ = scuve()
-    scuve_.extract()
+    scuve = scuve()
+    scuve.extract()
